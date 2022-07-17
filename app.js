@@ -1,9 +1,30 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+
+//TEMPLATE ENGINE
+app.set('view engine', 'ejs');
+
+//MIDDLEWARES
+app.use(express.static('public'));
+
 
 
 app.get('/', (req, res) => {
-    res.status(200).send('INDEX PAGE');
+    res.status(200).render('index', {
+        page_name: 'index',
+    });
 });
+
+app.get('/about', (req, res) => {
+    res.status(200).render('about', {
+        page_name: 'about'
+    });
+});
+
+
+
+
+
+
+app.listen(port, () => console.log(`Listening on port ${port}...`));
