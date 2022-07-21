@@ -2,6 +2,7 @@ const mongoos = require('mongoose');
 const Schema = mongoos.Schema;
 const bcrypt = require('bcrypt');
 
+
 const UserSchema = new Schema({
     name: {
         type: String,
@@ -18,9 +19,13 @@ const UserSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ["student","teacher","admin"],
+        enum: ["student", "teacher", "admin"],
         default: "student"
-    }
+    },
+    courses: [{
+        type: mongoos.Schema.Types.ObjectId,
+        ref: 'Course'
+    }],
 
 });
 
