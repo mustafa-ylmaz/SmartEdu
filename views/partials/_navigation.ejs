@@ -29,13 +29,17 @@
           <li class="nav-item">
             <a class="nav-link" href="/courses">Courses</a>
           </li>
-		  <% if(userIN) { %>
+          <% if(userIN) { %>
           <li class="nav-item">
-            <a class="nav-link <%= page_name === 'index' && 'active'%>" href="/users/dashboard">Dashboard</a>
+            <a
+              class="nav-link <%= page_name === 'index' && 'active'%>"
+              href="/users/dashboard"
+              >Dashboard</a
+            >
           </li>
-		  <% } %>
+          <% } %>
           <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact</a>
+            <a class="nav-link <%= page_name==='contact' && 'orange'%>"" href="/contact">Contact</a>
           </li>
         </ul>
 
@@ -62,9 +66,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a
-              class="hover-btn-new log %> mr-2"
-              href="/users/logout"
+            <a class="hover-btn-new log %> mr-2" href="/users/logout"
               ><span><i class="fa fa-sign-out" aria-hidden="true"></i></span
             ></a>
           </li>
