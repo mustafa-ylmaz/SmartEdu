@@ -31,10 +31,18 @@ const UserSchema = new Schema({
 
 UserSchema.pre('save', function (next) {
     const user = this;
-    bcrypt.hash(user.password, 10, function (err, hash) {
-        user.password = hash;
-        next();
-    });
+    if (user.isModified('password')) {
+        bcrypt.genSalt(10, (err, salt) => {
+            if (err) return next(err)
+            bcrypt.hash(user.password, salt, (err, hash) => {
+                if (err) return next(err)
+                user.password = hash;
+                next();
+            });
+
+
+        })
+    }
 });
 
 const User = mongoos.model('User', UserSchema);

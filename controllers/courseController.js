@@ -45,7 +45,7 @@ exports.getAllCourses = async (req, res) => {
 
         if (!query && !categorySlug) {
             filter.name = "",
-            filter.category = null;
+                filter.category = null;
         }
 
         const courses = await Course.find({
@@ -127,6 +127,38 @@ exports.releaseCourse = async (req, res) => {
         });
         await user.save();
 
+        res.status(200).redirect('/users/dashboard');
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            error,
+        });
+    }
+};
+
+exports.deleteCourse = async (req, res) => {
+    try {
+        const course = await Course.findOneAndRemove({
+            slug: req.params.slug
+        });
+        req.flash('error', 'Course deleted successfully');
+        res.status(200).redirect('/users/dashboard');
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            error,
+        });
+    }
+};
+
+exports.updateCourse = async (req, res) => {
+    try {
+        const course = await Course.findOne({slug: req.params.slug});
+        course.name = req.body.name;
+        course.description = req.body.description;
+        course.category = req.body.category;
+        course.save();
+        req.flash('error', 'Course updated successfully');
         res.status(200).redirect('/users/dashboard');
     } catch (error) {
         res.status(400).json({
