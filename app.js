@@ -14,7 +14,7 @@ const categoryRoute = require('./routes/categoryRoute');
 const userRoute = require('./routes/userRoute');
 
 //connect db
-mongoose.connect('mongodb://localhost/smartedu-db').then(() => {
+mongoose.connect('mongodb+srv://mustafaylmaz:asdfasdf@cluster0.coh4d.mongodb.net/smartedu?retryWrites=true&w=majority').then(() => {
     console.log('Connected to MongoDB')
 }).catch(err => {
     console.log(err)

@@ -4,5 +4,5 @@ const categoryController = require('../controllers/categoryController');
 const mongoose = require('mongoose');
 
 router.route('/').post(categoryController.createCategory);
-
+router.route('/:id/del').post(categoryController.deleteCategory);
 module.exports = router
