@@ -37,7 +37,7 @@ app.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: true,
-    store: MongoStore.create({mongoUrl:'mongodb://localhost/smartedu-db'})
+    store: MongoStore.create({mongoUrl:'mongodb+srv://mustafaylmaz:asdfasdf@cluster0.coh4d.mongodb.net/smartedu?retryWrites=true&w=majority'})
 }));
 app.use(flash());
 app.use((req, res, next) => {
